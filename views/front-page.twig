@@ -15,39 +15,61 @@
 					{{post.content}}
 				</div>
 				
-				{# We have created a custom radio button field for the display of the header image. You can choose from either a gallery or an image. In this conditional, we run some code based on that choice. #}
-				
-				{# If the field called type_of_header is equal to "Gallery", do the following: #}
-				{% if post.type_of_header == 'Gallery' %}
+				<div class="row">
 					
-					{# Since a Gallery field returns an array of attachment IDs, we need to loop through them. #}
-					{% for id in post.home_page_gallery %}
-						
-						{# Retrieve the TimberImage object from the ID returned in the gallery array. Create a variable to store that object so we don't have to keep writing TimberImage(id). This is analogous to creating variables to store jQuery objects. #}
-						{% set img = TimberImage(id) %}
-						
-						<div class="gallery-image">
-							{# Get the title of the image by calling the "title" value from the TimberImage object. #}
-							<h5>{{img.title}}</h5>
+					{% if post.type_of_header == 'Gallery' %}
 
-							{# Get the image's path, called src (sometimes this is called URL in ACF.) Then add an alt tag with the image's title. #}
-							<img src="{{img.src|resize(800)}}" alt="{{img.title}}">
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+						      </div>
+						      <div class="modal-body">
+								<img id="resultImg" src="{{img.src|resize(800)}}" alt="{{img.title}}">
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						        <button type="button" class="btn btn-primary">Save changes</button>
+						      </div>
+						    </div>
+						  </div>
 						</div>
-					{# End the loop for the gallery array #}
-					{% endfor %}
 
-				{# Our next condition is for the header type of image. This is an image field, and we treat it similarly except it returns only one ID instead of an array like the gallery. We can test this using dump() #}
-				{% elseif post.type_of_header == 'Image' %}
+						{% for id in post.home_page_gallery %}
+							
+							{% set img = TimberImage(id) %}
+							
+							<!-- Button trigger modal -->
+						{# 	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+							  Launch demo modal
+							</button>
+ #}
 
-					{# Get the TimberImage object from the ID returned from the post.home_header_image custom field #}
-					{% set hdr_img = TimberImage(post.home_header_image) %}
+{# 
 
-					{# Get the source and title data from the TimberImage object above. We are storing the object in a variable to help shorten up our code and make it more readable. #}
-					<img src="{{hdr_img.src}}" alt="{{hdr_img.title}}">
 
-				{# End the conditional. #}
-				{% endif %}
-				
+Click image
+get src of image
+insert source into modal
+show modal
+
+
+ #}
+
+							<div class="gallery-image col-md-4 col-sm-6">
+								<h5>{{img.title}}</h5>
+								<img class="targetImg" src="{{img.src|resize(400)}}" alt="{{img.title}}" data-toggle="modal" data-target="#myModal">
+							</div>
+
+						{% endfor %}
+					{% elseif post.type_of_header == 'Image' %}
+						{% set hdr_img = TimberImage(post.home_header_image) %}
+						<img src="{{hdr_img.src}}" alt="{{hdr_img.title}}">
+					{% endif %}
+				</div>
 
 			</section>
 		</article>

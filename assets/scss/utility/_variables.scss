@@ -7,7 +7,18 @@ $screen-md: 	42rem;
 $screen-lg: 	50rem;
 
 
+// Colors
 
+$blue: cornflowerblue;
+$brown: saddlebrown;
+$light-green: honeydew;
+
+$color-accent-dark: $brown;
+$color-accent-med: $blue;
+$color-accent-light: $light-green;
+
+
+// Sizes
 
 $size-base: 	1.1rem;
 
@@ -19,12 +30,25 @@ $size-h4: 		$size-base*1.4;
 $size-sml: 		$size-base*0.85;
 
 
+// Z-index
+
+$z-bot: 	0;
+$z-mid: 	2;
+$z-top: 	3;
+
 // Typography
 
-$sans-serif: 	'Georgia';
+$sans-serif: 	'brandon-grotesque', Helvetica, serif;
 $serif: 		'Helvetica';
 
 $font-heading: 		$sans-serif;
-$font-body: 		$serif;
+$font-body: 		$sans-serif;
+
+$font-heading-fallback: 'Gill Sans', sans-serif;
+
+
+
+
+
 
 

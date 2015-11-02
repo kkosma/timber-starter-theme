@@ -1,38 +1,53 @@
 .nav-main {
+
+	// Mobile nav styles
 	max-height: 0;
 	overflow: hidden;
 	transition: all 0.75s ease;
+	margin-top: $size-h2;
 
+	// Open nav styles
 	&.active {
 		background-color: purple;
 		max-height: $screen-md;
+		overflow: visible;
 	}
 
+	// Larger screens layout
 	@include bp(md) {
+		overflow: visible;
 		max-height: none;
 	}
 }
 
 .nav-items {
-	list-style-type: none;
-	padding-left: 0;
+	@include unstyle-list;
+	transition: 0.5s ease all;
 
 	@include bp(md) {
+		// Make nav horizontal
 		& > li {
 			display: inline-block;
 		}
-		background-color: red;
 	}
 }
 
-	.nav-item-link {
-		padding: 1.4rem;
+.nav-item-link,
+.nav-drop-link {
+	@include upperspace;
+	padding: $size-h4;
+	display: block;
+
+	&:hover {
+		background-color: $color-accent-light;
+		color: $color-accent-med;
 	}
+}
 
 
 // Link to open the nav
 
-.nav-link {
+.nav-open-link {
 	
 	@include bp(md) {
 		display: none;
@@ -42,3 +57,36 @@
 		background-color: blue;
 	}
 }
+
+// Dropdown Nav
+
+.nav-drop {
+
+	// Hide the dropdown
+	max-height: 0;
+	overflow: hidden;
+	@include unstyle-list;
+	width: 100%;
+
+	@include bp(md) {
+		// Dropdown goes below parent item
+		text-align: left;
+		position: absolute;
+		z-index: $z-top;
+	}
+}
+
+.nav-drop-item {
+	background-color: $color-accent-med;
+}
+
+.menu-item-has-children {
+	position: relative;
+}
+
+.menu-item-has-children:hover 
+.nav-drop {
+	max-height: 32em;
+	overflow: visible;
+}
+

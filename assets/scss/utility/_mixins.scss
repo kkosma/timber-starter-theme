@@ -27,3 +27,15 @@ $MQs: true;
 		}
 	}
 }
+
+@mixin upperspace() {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+@mixin unstyle-list() {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+

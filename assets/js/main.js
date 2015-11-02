@@ -6,7 +6,7 @@ $(document).ready( function() {
 
 	// Put some nice JavaScript in here.
 	var $nav_main = $('#nav-main'),
-		$nav_link = $('#nav-link');
+		$nav_link = $('#nav-open-link');
 
 	$nav_link.click( function() {
 		console.log('clicked!');
@@ -15,4 +15,23 @@ $(document).ready( function() {
 		return false;
 	});
 
+	// $('#myModal').on('shown.bs.modal', function () {
+	//   	// $('#myInput').focus();
+	// 	console.log(src);
+	// });
+
+	var $thumb = $('.targetImg');
+	var $result = $('#resultImg');
+
+	$thumb.each( function() {
+		$(this).on( 'click', function() {
+			var src = $(this).attr('src');
+			$result.attr('src', src);
+			console.log(src);
+		});
+	});
+
+	
+
 });
+

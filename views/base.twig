@@ -9,9 +9,9 @@
 	<body class="{{body_class}}" data-template="base.twig">
 		<header class="header">
 			{% block header %}
-				<div class="contain">
-					<h1 class="hdr-logo" role="banner">
-						<a class="hdr-logo-link" href="{{site.link}}" rel="home">{{site.name}}</a>
+				<div class="container">
+					<h1 class="site-title" role="banner">
+						<a class="site-title-link" href="{{site.link}}" rel="home">{{site.name}}</a>
 					</h1>
 					{% include 'partials/nav.twig' %}
 				</div>
@@ -19,7 +19,7 @@
 		</header>
 
 		<section id="content" role="main" class="content-wrapper">
-			<div class="contain {{sidebar_class}}">
+			<div class="container {{sidebar_class}}">
 				{% if title %}<h1>{{title}}</h1>{% endif %}
 				
 				{% block content %}
