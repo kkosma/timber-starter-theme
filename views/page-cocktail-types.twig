@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="content-wrapper">
+		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
+			<section class="article-content">
+				<h1>{{post.title}}</h1>
+				<div class="article-body">
+					{{post.content}}
+				</div>
+				{# Loop through terms we retrieved in the PHP file #}
+				{% for term in types %}
+					<h3>{{term.name}}</h3>
+					{# Get Cocktails from term and loop through them #}
+					{% for cocktail in term.get_posts('numberposts=4') %}
+						<h5>{{cocktail.title}}</h5>
+					{% endfor %}
+					<br>
+					{# Link to archive of Cocktails with that term #}
+					<strong><a href="{{term.link}}">All {{term.name}} Cocktails</a></strong>
+				{% endfor %}
+			</section>
+		</article>
+	</div><!-- /content-wrapper -->
+{% endblock %}
