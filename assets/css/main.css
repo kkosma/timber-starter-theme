@@ -516,3 +516,11 @@ img {
   max-width: 52em;
   width: 93%;
   margin: 0 auto; }
+
+.callout-bar {
+  background-color: #334D5C;
+  color: #fefefe;
+  padding: 0.66rem;
+  text-align: center; }
+  .callout-bar p {
+    margin: 0; }
