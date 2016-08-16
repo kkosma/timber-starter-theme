@@ -1,0 +1,66 @@
+{
+    "key": "group_57b24bfb9d6e4",
+    "title": "Site Options",
+    "fields": [
+        {
+            "key": "field_57b24c534ec83",
+            "label": "Callout Bar",
+            "name": "callout_bar_tf",
+            "type": "true_false",
+            "instructions": "Should the callout bar display?",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0
+        },
+        {
+            "key": "field_57b24ca24ec84",
+            "label": "Callout Bar Text",
+            "name": "callout_bar_text",
+            "type": "wysiwyg",
+            "instructions": "Text for the callout bar. Limit to one sentence.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_57b24c534ec83",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "75",
+                "class": "wysiwyg-short",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "links_only",
+            "media_upload": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1471305679
+}
