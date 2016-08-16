@@ -1,0 +1,10 @@
+.callout-bar {
+  background-color: $color-accent-dark;
+  color: $color-text-light;
+  padding: $size-xsml;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
