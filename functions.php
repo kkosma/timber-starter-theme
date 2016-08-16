@@ -59,6 +59,10 @@ class StarterSite extends TimberSite {
 		// Our menu occurs on every page, so we add it to the global context.
 		$context['menu'] = new TimberMenu();
 
+		// Callout Bar data
+		$context['callout_tf'] = get_field('callout_bar_tf', 'option');
+		$context['callout_text'] = get_field('callout_bar_text', 'option');
+
 		// This 'site' context below allows you to access main site information like the site title or description.
 		$context['site'] = $this;
 		return $context;
@@ -99,4 +103,63 @@ function my_scripts() {
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
 
 
+// Add options page
+if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page();
+}
+
+// Customize WYSIWYG toolbar
+function my_toolbars( $toolbars )
+{
+	// Uncomment to view format of $toolbars
+	/*
+	echo '< pre >';
+		print_r($toolbars);
+	echo '< /pre >';
+	die;
+	*/
+
+	// Add a new toolbar called "Very Simple"
+	// - this toolbar has only 1 row of buttons
+	$toolbars['Very Simple' ] = array();
+	$toolbars['Very Simple' ][1] = array('bold' , 'italic' , 'underline' );
+
+	// Add a new toolbar called "Very Simple"
+	// - this toolbar has only 1 row of buttons
+	$toolbars['Links Only' ] = array();
+	$toolbars['Links Only' ][1] = array('link', 'unlink');
+
+	// Edit the "Full" toolbar and remove 'code'
+	// - delet from array code from http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
+	if( ($key = array_search('code' , $toolbars['Full' ][2])) !== false )
+	{
+	    unset( $toolbars['Full' ][2][$key] );
+	}
+
+	// return $toolbars - IMPORTANT!
+	return $toolbars;
+}
+
+add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+
+
+
+// Add ACF Styles
+// https://www.advancedcustomfields.com/resources/acfinputadmin_head/
+
+function my_acf_admin_head() {
+	?>
+	<style type="text/css">
+
+		.wysiwyg-short iframe {
+			min-height: 0;
+			max-height:	60px;
+		}
+
+	</style>
+
+	<?php
+}
+
+add_action('acf/input/admin_head', 'my_acf_admin_head');
 
